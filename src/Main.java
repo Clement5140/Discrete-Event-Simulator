@@ -1,7 +1,5 @@
-import java.util.Scanner;
 import java.util.PriorityQueue;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Comparator;
 
 import cs2030.simulator.*;
@@ -9,24 +7,29 @@ import cs2030.simulator.*;
 class Main {
     public static void main(String[] args) {
         // test();
-        Scanner sc = new Scanner(System.in);
+        int randomGeneratorSeed = Integer.valueOf(args[0]).intValue();
+        int numOfServers = Integer.valueOf(args[1]).intValue();
+        int numOfCustomers = Integer.valueOf(args[2]).intValue();
+        double lambda = Double.valueOf(args[3]).doubleValue();
+        double mu = Double.valueOf(args[4]).doubleValue();
+
+        Statistics.setNumOfCustomers(numOfCustomers);
+        Random.setRandom(randomGeneratorSeed, lambda, mu, 0);
+
         PriorityQueue<Event> pq = new PriorityQueue<Event>(new Comparator<Event>() {
             public int compare(Event o1, Event o2) {
                 return o1.compareTo(o2);
             }
         });
 
-        int numOfServers = sc.nextInt();
-        List<Server> serverList = new ArrayList<>();
-        for (int i = 0; i < numOfServers; i++)
-            serverList.add(new Server(i + 1, true, false, 0));
-        Shop shop = new Shop(serverList);
+        Shop shop = new Shop(numOfServers);
 
         int indexOfCustomers = 1;
-        while (sc.hasNextDouble()) {
-            double arrivalTime = sc.nextDouble();
+        double arrivalTime = 0.0;
+        for (int i = 0; i < numOfCustomers; ++i) {
             Customer customer = new Customer(indexOfCustomers++, arrivalTime);
             pq.add((Event)(new ArriveEvent(customer)));
+            arrivalTime += Random.genInterArrivalTime();
         }
 
         while (!pq.isEmpty()) {
@@ -39,7 +42,7 @@ class Main {
             // System.out.println(shop);
         }
 
-        sc.close();
+        System.out.println("[" + String.format("%.3f", Statistics.getAverageWaitingTime()) + " " + Statistics.getServedCustomers() + " " + Statistics.getLeftCustomers() + "]");
     }
 
     public static void test() {

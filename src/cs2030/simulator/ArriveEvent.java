@@ -13,7 +13,7 @@ public class ArriveEvent extends Event {
         Optional<Server> opServer = shop.find(x -> x.isAvailable());
         if(opServer.isPresent()) {
             Server server = opServer.get();
-            Server newserver = new Server(server.getID(), true, false, customer.getArrivalTime()+1);
+            Server newserver = new Server(server.getID(), true, false, customer.getArrivalTime()+Random.genServiceTime());
             Shop newShop = shop.replace(newserver);
             Event newEvent = new ServeEvent(customer, customer.getArrivalTime(), newserver.getID());
             return new Pair<Shop, Event>(newShop, newEvent);
@@ -24,6 +24,7 @@ public class ArriveEvent extends Event {
             Server newserver = new Server(server.getID(), false, false, server.getNextAvailableTime());
             Shop newShop = shop.replace(newserver);
             Event newEvent = new WaitEvent(customer, customer.getArrivalTime(), newserver.getID());
+            Statistics.addWaitingTime(server.getNextAvailableTime() - customer.getArrivalTime());
             return new Pair<Shop, Event>(newShop, newEvent);
         }
         Shop newShop = new Shop(shop.getServerList());
