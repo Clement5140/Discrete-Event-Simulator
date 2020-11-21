@@ -13,6 +13,8 @@ import java.util.stream.Stream;
 public class Shop {
     private final List<Server> serverList;
 
+    public Shop() { serverList = new ArrayList<Server>(); }
+
     public Shop(int numOfServers) {
         int[] nums = IntStream.range(0, numOfServers).toArray();
         List<Integer> numList = Arrays.stream(nums).boxed().collect(Collectors.toList());

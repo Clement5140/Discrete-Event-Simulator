@@ -16,19 +16,16 @@ public class Server{
     public int getID(){
         return this.identifier;
     }
-    public boolean getAvailable(){
+    public boolean isAvailable(){
         return this.isAvailable;
     }
-    public boolean getWaitingCustomer(){
+    public boolean hasWaitingCustomer(){
         return this.hasWaitingCustomer;
     }
     public double getNextAvailableTime(){
         return this.nextAvailableTime;
     }
 
-    public boolean isAvailable(){
-        return this.isAvailable;
-    }
 
     public Server setState(){
         if(this.isAvailable == true) {
@@ -56,7 +53,7 @@ public class Server{
         if(this.isAvailable == true){
             return this.identifier + " is available";
         } else if(this.hasWaitingCustomer == false) {
-            return this.identifier + " is busy; available at " +String.format("%.3f", this.nextAvailableTime);
+            return this.identifier + " is busy; available at " + String.format("%.3f", this.nextAvailableTime);
         } else {
             return this.identifier + " is busy; waiting customer to be served at " + String.format("%.3f",this.nextAvailableTime);
         }                  
