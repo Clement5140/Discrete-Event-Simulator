@@ -22,6 +22,7 @@ public class Statistics {
     }
 
     public static double getAverageWaitingTime() {
+        if(numOfServedCustomers == 0) return 0.0;
         return totalWaitingTime / (double)numOfServedCustomers;
     }
 
