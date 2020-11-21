@@ -1,32 +1,33 @@
 package cs2030.simulator;
 
-public class Random {
+public class RandomGen {
     private static RandomGenerator randomGenerator;
 
-    public Random() {}
+    public RandomGen() {}
 
-    public static void setRandom(int seed, double lambda, double mu, double rho) {
+    public RandomGen(int seed, double lambda, double mu, double rho) {
         randomGenerator = new RandomGenerator(seed, lambda, mu, rho);
     }
 
-    public static double genInterArrivalTime() {
+    public double genInterArrivalTime() {
         return randomGenerator.genInterArrivalTime();
     }
 
-    public static double genServiceTime() {
+    public double genServiceTime() {
         return randomGenerator.genServiceTime();
     }
 
-    public static double genRandomRest() {
+    public double genRandomRest() {
         return randomGenerator.genRandomRest();
     }
 
-    public static double genRestPeriod() {
+    public double genRestPeriod() {
         return randomGenerator.genRestPeriod();
     }
 
-    public static double genCustomerType() {
+    public double genCustomerType() {
         return randomGenerator.genCustomerType();
     }
+
 
 }

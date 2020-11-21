@@ -15,7 +15,8 @@ public class WaitEvent extends Event {
         Optional<Server> opServer = shop.find(x -> x.getID()==serverID);
         if(opServer.isPresent()) {
             Server server = opServer.get();
-            Server newserver = new Server(server.getID(), false, true, server.getNextAvailableTime()+Random.genServiceTime());
+            RandomGen random = new RandomGen();
+            Server newserver = new Server(server.getID(), false, true, server.getNextAvailableTime()+random.genServiceTime());
             Shop newShop = shop.replace(newserver);
             Event newEvent = new ServeEvent(customer, server.getNextAvailableTime(), newserver.getID());
             return new Pair<Shop, Event>(newShop, newEvent);

@@ -26,28 +26,6 @@ public class Server{
         return this.nextAvailableTime;
     }
 
-
-    public Server setState(){
-        if(this.isAvailable == true) {
-            return new Server(this.identifier, false, this.hasWaitingCustomer, this.nextAvailableTime);
-        } else {
-            return new Server(this.identifier, true, this.hasWaitingCustomer, this.nextAvailableTime);
-        }
-    }
-
-    public Server setWaitingCustomer(){
-        if(this.hasWaitingCustomer == true){
-            return new Server(this.identifier, this.isAvailable, false, this.nextAvailableTime);
-        } else {
-            return new Server(this.identifier, this.isAvailable, true, this.nextAvailableTime);
-        }
-    }
-
-    public Server setNextAvailableTime(){
-        return new Server(this.identifier, this.isAvailable, this.hasWaitingCustomer, this.nextAvailableTime + 1.0);
-    }
-
-
     @Override
     public String toString(){
         if(this.isAvailable == true){

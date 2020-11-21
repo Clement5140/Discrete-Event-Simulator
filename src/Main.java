@@ -1,10 +1,16 @@
 import java.util.PriorityQueue;
 import java.util.List;
 import java.util.Comparator;
+import cs2030.simulator.Pair;
+import cs2030.simulator.RandomGen;
+import cs2030.simulator.Statistics;
+import cs2030.simulator.Customer;
+import cs2030.simulator.Server;
+import cs2030.simulator.Shop;
+import cs2030.simulator.Event;
+import cs2030.simulator.ArriveEvent;
 
-import cs2030.simulator.*;
-
-class Main {
+public class Main {
     public static void main(String[] args) {
         // test();
         int randomGeneratorSeed = Integer.valueOf(args[0]).intValue();
@@ -14,7 +20,7 @@ class Main {
         double mu = Double.valueOf(args[4]).doubleValue();
 
         Statistics.setNumOfCustomers(numOfCustomers);
-        Random.setRandom(randomGeneratorSeed, lambda, mu, 0);
+        RandomGen random = new RandomGen(randomGeneratorSeed, lambda, mu, 0);
 
         PriorityQueue<Event> pq = new PriorityQueue<Event>(new Comparator<Event>() {
             public int compare(Event o1, Event o2) {
@@ -29,7 +35,7 @@ class Main {
         for (int i = 0; i < numOfCustomers; ++i) {
             Customer customer = new Customer(indexOfCustomers++, arrivalTime);
             pq.add((Event)(new ArriveEvent(customer)));
-            arrivalTime += Random.genInterArrivalTime();
+            arrivalTime += random.genInterArrivalTime();
         }
 
         while (!pq.isEmpty()) {

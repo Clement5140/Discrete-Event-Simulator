@@ -30,7 +30,6 @@ public abstract class Event{
     }
     
     public final Pair<Shop, Event> execute(Shop shop) {
-        // System.out.println(shop);
         return this.func.apply(shop);
     }
 
