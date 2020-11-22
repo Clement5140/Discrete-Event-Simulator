@@ -4,10 +4,10 @@ public class LeaveExecute {
     
     
     /** 
-     * LeaveEvent的Execute方法.
+     * LeaveEvent Execute method.
      * 
-     * @param customer  客户
-     * @param shop      商店
+     * @param customer  customer
+     * @param shop      shop
      * @return Pair
      */
     public static Pair<Shop, Event> leaveFunc(Customer customer, Shop shop) {

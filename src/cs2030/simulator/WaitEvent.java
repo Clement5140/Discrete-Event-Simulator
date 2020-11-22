@@ -4,11 +4,11 @@ public class WaitEvent extends Event {
     private final int serverID;
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
-     * @param customer  客户
-     * @param eventStartTime    开始时间
-     * @param serverID  server的ID
+     * @param customer  customer
+     * @param eventStartTime    event start time
+     * @param serverID  server identifier
      */
     public WaitEvent(Customer customer, double eventStartTime, int serverID) {
         super(customer, eventStartTime, 2,
@@ -17,12 +17,12 @@ public class WaitEvent extends Event {
     }
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
-     * @param customer  客户
-     * @param eventStartTime    开始时间
-     * @param serverID  server的ID
-     * @param visible   是否打印
+     * @param customer  customer
+     * @param eventStartTime    event start time
+     * @param serverID  server identifier
+     * @param visible   output or not
      */
     public WaitEvent(Customer customer, double eventStartTime, int serverID, boolean visible) {
         super(customer, eventStartTime, 2,
@@ -32,7 +32,7 @@ public class WaitEvent extends Event {
 
     
     /** 
-     * String转换.
+     * String transform.
      * 
      * @return String
      */

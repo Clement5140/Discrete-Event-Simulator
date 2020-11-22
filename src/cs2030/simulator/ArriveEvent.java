@@ -9,7 +9,7 @@ public class ArriveEvent extends Event {
 
     
     /** 
-     * String转换.
+     * String transform.
      * 
      * @return String
      */

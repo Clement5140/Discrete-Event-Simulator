@@ -4,11 +4,11 @@ public class ServerRestEvent extends Event {
     private final int serverID;
     
     /** 
-     * 构造函数.
+     * constructed function.
      * 
-     * @param customer  客户
-     * @param eventStartTime    开始时间
-     * @param serverID  server的ID
+     * @param customer  customer
+     * @param eventStartTime    event start time
+     * @param serverID  server identifier
      */
     public ServerRestEvent(Customer customer, double eventStartTime, int serverID) {
         super(customer, eventStartTime, -1,

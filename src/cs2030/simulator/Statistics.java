@@ -7,9 +7,9 @@ public class Statistics {
 
     
     /** 
-     * 设置客户数目.
+     * set customer number.
      * 
-     * @param numOfCustomers   客户数目
+     * @param numOfCustomers   customer number
      */
     public static void setNumOfCustomers(int numOfCustomers) {
         Statistics.numOfCustomers = numOfCustomers;
@@ -17,24 +17,23 @@ public class Statistics {
 
     
     /** 
-     * 累计等待时间.
+     * add waiting time.
      * 
-     * @param t 要累计的时间
+     * @param t adding time
      */
     public static void addWaitingTime(double t) {
         totalWaitingTime += t;
     }
 
     /** 
-     * 累计接受服务的客户数目.
-     * 
+     * total served customers.
      */
     public static void addServedCustomers() {
         numOfServedCustomers++;
     }
     
     /** 
-     * 获取总等待时间.
+     * total waiting time.
      * 
      * @return double
      */
@@ -44,7 +43,7 @@ public class Statistics {
 
     
     /** 
-     * 获取平均等待时间.
+     * average waiting time.
      * 
      * @return double
      */
@@ -57,7 +56,7 @@ public class Statistics {
 
     
     /** 
-     * 获取接受服务的客户数目.
+     * get number of served customers.
      * 
      * @return int
      */
@@ -67,7 +66,7 @@ public class Statistics {
 
     
     /** 
-     * 获取离开的客户数目.
+     * get number of left customers.
      * 
      * @return int
      */

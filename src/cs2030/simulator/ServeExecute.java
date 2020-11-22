@@ -6,11 +6,11 @@ public class ServeExecute {
     
     
     /** 
-     * ServeEvent的Execute方法.
+     * ServeEvent Execute method.
      * 
-     * @param customer  客户
-     * @param serverID  server的ID
-     * @param shop      商店
+     * @param customer  customer
+     * @param serverID  server identifier
+     * @param shop      shop
      * @return Pair
      */
     public static Pair<Shop, Event> serveFunc(Customer customer, int serverID, Shop shop) {

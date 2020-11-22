@@ -17,9 +17,9 @@ import cs2030.simulator.Server;
 public class Main {
     
     /** 
-     * 主函数.
+     * main function.
      * 
-     * @param args  传入的参数列表
+     * @param args  parameter list
      */
     public static void main(String[] args) {
         // test();
@@ -133,7 +133,7 @@ public class Main {
     }
 
     /**
-     * 总测试函数.
+     * test function.
      */
     public static void test() {
         test_level1();
@@ -141,7 +141,7 @@ public class Main {
     }
 
     /**
-     * 测试函数1.
+     * test function 1.
      */
     public static void test_level1() {
         System.out.println(new Shop(2));
@@ -158,7 +158,7 @@ public class Main {
     }
 
     /**
-     * 测试函数2.
+     * test function 2.
      */
     public static void test_level2() {
         Pair<Integer, String> pair = Pair.of(1, "one");

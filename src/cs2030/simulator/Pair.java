@@ -5,10 +5,10 @@ public class Pair<T, U> {
     private final U u;
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
-     * @param t 第一个元素
-     * @param u 第二个元素
+     * @param t first element
+     * @param u second element
      */
     public Pair(T t, U u) {
         this.t = t;
@@ -17,7 +17,7 @@ public class Pair<T, U> {
 
     
     /** 
-     * 第一个元素.
+     * first element.
      * 
      * @return T
      */
@@ -27,7 +27,7 @@ public class Pair<T, U> {
 
     
     /** 
-     * 第二个元素.
+     * second element.
      * 
      * @return U
      */
@@ -37,10 +37,10 @@ public class Pair<T, U> {
 
     
     /** 
-     * 新建Pair对象.
+     * new Pair object.
      * 
-     * @param a 第一个元素
-     * @param b 第二个元素
+     * @param a first element
+     * @param b second element
      * @return Pair
      */
     public static <A, B> Pair<A, B> of(A a, B b) {

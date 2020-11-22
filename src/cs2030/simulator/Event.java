@@ -10,12 +10,12 @@ public abstract class Event {
     private final boolean visible;
 
     /** 
-     * 构造函数.
+     * constructed function.
      * 
-     * @param customer  客户
-     * @param eventStartTime    开始时间
-     * @param priority  优先级
-     * @param func  execute方法
+     * @param customer  customer
+     * @param eventStartTime    event start time
+     * @param priority  priority
+     * @param func  execute method
      */
     public Event(Customer customer, double eventStartTime,
         Integer priority, Function<Shop, Pair<Shop, Event>> func) {
@@ -27,13 +27,13 @@ public abstract class Event {
     }
 
     /** 
-     * 构造函数.
+     * constructed function.
      * 
-     * @param customer  客户
-     * @param eventStartTime    开始时间
-     * @param priority  优先级
-     * @param func  execute方法
-     * @param visible   是否打印
+     * @param customer  customer
+     * @param eventStartTime    event start time
+     * @param priority  priority
+     * @param func  execute method
+     * @param visible   output or not
      */
     public Event(Customer customer, double eventStartTime,
         Integer priority, Function<Shop, Pair<Shop, Event>> func, boolean visible) {
@@ -46,7 +46,7 @@ public abstract class Event {
 
     
     /** 
-     * 获取客户.
+     * get customer.
      * 
      * @return Customer
      */
@@ -56,7 +56,7 @@ public abstract class Event {
     
     
     /** 
-     * 获取事件开始时间.
+     * get event start time.
      * 
      * @return double
      */
@@ -66,7 +66,7 @@ public abstract class Event {
 
     
     /** 
-     * 是否打印该事件.
+     * get output or not.
      * 
      * @return boolean
      */
@@ -76,9 +76,9 @@ public abstract class Event {
 
     
     /** 
-     * 排序比较函数.
+     * sort comparator.
      * 
-     * @param o 比较对象
+     * @param o comparison
      * @return int
      */
     public int compareTo(Event o) {
@@ -91,9 +91,9 @@ public abstract class Event {
     
     
     /** 
-     * 执行事件方法.
+     * execute method.
      * 
-     * @param shop  商店
+     * @param shop  shop
      * @return Pair
      */
     public final Pair<Shop, Event> execute(Shop shop) {

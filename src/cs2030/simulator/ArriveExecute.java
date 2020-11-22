@@ -8,11 +8,11 @@ public class ArriveExecute {
     
     
     /** 
-     * ArriveEvent的Execute方法.
+     * ArriveEvent Execute method.
      * 
-     * @param customer  客户
-     * @param shop  商店
-     * @return Pair 返回一对Shop和Event
+     * @param customer  customer
+     * @param shop  shop
+     * @return Pair return a Pair of Shop and Event
      */
     public static Pair<Shop, Event> arriveFunc(Customer customer, Shop shop) {
         Utils utils = new Utils();

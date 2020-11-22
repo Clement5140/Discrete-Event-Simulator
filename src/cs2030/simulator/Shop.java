@@ -14,16 +14,16 @@ public class Shop {
     private final List<Server> serverList;
 
     /** 
-     * 空构造函数.
+     * empty constructed funcion.
      */
     public Shop() {
         serverList = new ArrayList<Server>();
     }
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
-     * @param numOfServers  server数目
+     * @param numOfServers  server number
      */
     public Shop(int numOfServers) {
         int[] nums = IntStream.range(0, numOfServers).toArray();
@@ -33,19 +33,19 @@ public class Shop {
     }
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
-     * @param serverList    server列表
+     * @param serverList    server list
      */
     public Shop(List<Server> serverList) {
         this.serverList = new ArrayList<Server>(serverList);
     }
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
-     * @param numOfServers  server数目
-     * @param numOfSelfCheckoutCounters self-checkout counter数目
+     * @param numOfServers  server number
+     * @param numOfSelfCheckoutCounters self-checkout counter number
      */
     public Shop(int numOfServers, int numOfSelfCheckoutCounters) {
         int[] nums = IntStream.range(0, numOfServers).toArray();
@@ -63,7 +63,7 @@ public class Shop {
 
     
     /** 
-     * 获取server列表.
+     * get server list.
      * 
      * @return List
      */
@@ -73,9 +73,9 @@ public class Shop {
 
     
     /** 
-     * 获取满足条件的第一个server.
+     * get first server satisfying func.
      * 
-     * @param func  execute的方法
+     * @param func  execute method
      * @return Optional
      */
     public Optional<Server> find(Predicate<? super Server> func) {
@@ -85,9 +85,9 @@ public class Shop {
 
     
     /** 
-     * 替换相应server并返回新的Shop对象.
+     * replace server and return a new Shop object.
      * 
-     * @param s 替换的server
+     * @param s replacing server
      * @return Shop
      */
     public Shop replace(Server s) {
@@ -103,7 +103,7 @@ public class Shop {
 
     
     /** 
-     * String转换.
+     * String transform.
      * 
      * @return String
      */

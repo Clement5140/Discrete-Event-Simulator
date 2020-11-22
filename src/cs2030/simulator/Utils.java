@@ -8,15 +8,15 @@ public class Utils {
     private static double greedyProbability = 0.0;
 
     /** 
-     * 空构造函数.
+     * empty constructed funcion.
      */
     public Utils() {}
 
     
     /** 
-     * 设置server数目.
+     * set server number.
      * 
-     * @param numOfServers  server数目
+     * @param numOfServers  server number
      */
     public void setNumOfServers(int numOfServers) {
         Utils.numOfServers = numOfServers;
@@ -24,7 +24,7 @@ public class Utils {
 
     
     /** 
-     * 获取server数目.
+     * get server number.
      * 
      * @return int
      */
@@ -34,9 +34,9 @@ public class Utils {
 
     
     /** 
-     * 设置self-check counter数目.
+     * set self-check counter number.
      * 
-     * @param numOfSelfCheckoutCounters self-check counter数目
+     * @param numOfSelfCheckoutCounters self-check counter number
      */
     public void setNumOfSelfCheckoutCounters(int numOfSelfCheckoutCounters) {
         Utils.numOfSelfCheckoutCounters = numOfSelfCheckoutCounters;
@@ -44,7 +44,7 @@ public class Utils {
 
     
     /** 
-     * 获取self-check counter数目.
+     * get self-check counter number.
      * 
      * @return int
      */
@@ -54,9 +54,9 @@ public class Utils {
 
     
     /** 
-     * 设置等待队列长度的最大值.
+     * set max queue length.
      * 
-     * @param maxQueueLength    等待队列长度的最大值
+     * @param maxQueueLength    max queue length
      */
     public void setMaxQueueLength(int maxQueueLength) {
         Utils.maxQueueLength = maxQueueLength;
@@ -64,7 +64,7 @@ public class Utils {
 
     
     /** 
-     * 获取等待队列长度的最大值.
+     * get max queue length.
      * 
      * @return int
      */
@@ -74,9 +74,9 @@ public class Utils {
 
     
     /** 
-     * 设置rest概率.
+     * set rest probability.
      * 
-     * @param restProbability   rest概率
+     * @param restProbability   rest probability
      */
     public void setRestProbability(double restProbability) {
         Utils.restProbability = restProbability;
@@ -84,7 +84,7 @@ public class Utils {
 
     
     /** 
-     * 获取rest概率.
+     * get rest probability.
      * 
      * @return double
      */
@@ -94,9 +94,9 @@ public class Utils {
 
     
     /** 
-     * 设置客户贪心概率.
+     * set customer greedy probability.
      * 
-     * @param greedyProbability 客户贪心概率
+     * @param greedyProbability customer greedy probability
      */
     public void setGreedyProbability(double greedyProbability) {
         Utils.greedyProbability = greedyProbability;
@@ -104,7 +104,7 @@ public class Utils {
 
     
     /** 
-     * 获取客户贪心概率.
+     * get customer greedy probability.
      * 
      * @return double
      */
@@ -114,10 +114,10 @@ public class Utils {
 
     
     /** 
-     * 取max方法.
+     * get max method.
      * 
-     * @param a 参数一
-     * @param b 参数二
+     * @param a parameter a
+     * @param b parameter b
      * @return int
      */
     public int max(int a, int b) {

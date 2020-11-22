@@ -1,5 +1,15 @@
 # Compiled class file
-*.class
+Main*.class
+Customer.class
+Pair.class
+Server.class
+*2.class
+*s.class
+*n.class
+*m.class
+*e.class
+*p.class
+*Event.class
 
 # Log file
 *.log

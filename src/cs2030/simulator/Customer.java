@@ -6,10 +6,10 @@ public class Customer {
     private final boolean isGreedy;
     
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
-     * @param customerID    客户ID
-     * @param arrivalTime   到达时间
+     * @param customerID    customer ID
+     * @param arrivalTime   arrive time
      */
     public Customer(int customerID, double arrivalTime) {
         this.customerID = customerID;
@@ -18,7 +18,7 @@ public class Customer {
     }
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
      * @param customerID    客户ID
      * @param arrivalTime   到达时间
@@ -32,7 +32,7 @@ public class Customer {
 
     
     /** 
-     * 客户ID.
+     * get customer ID.
      * 
      * @return int
      */
@@ -42,7 +42,7 @@ public class Customer {
 
     
     /** 
-     * 到达时间.
+     * get arrive time.
      * 
      * @return double
      */
@@ -52,7 +52,7 @@ public class Customer {
 
     
     /** 
-     * 是否贪心.
+     * get greedy or not.
      * 
      * @return boolean
      */
@@ -62,7 +62,7 @@ public class Customer {
 
     
     /** 
-     * String转换.
+     * String transform.
      * 
      * @return String
      */

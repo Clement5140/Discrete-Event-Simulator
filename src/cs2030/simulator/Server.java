@@ -15,12 +15,12 @@ public class Server {
     private static Queue<Customer> sharingCustomerQueue = new LinkedList<Customer>();
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
      * @param identifier    ID
-     * @param isAvailable   是否空闲
-     * @param numOfWaitingCustomer  等待队列长度
-     * @param nextAvailableTime 下次空闲时间
+     * @param isAvailable   available or not
+     * @param numOfWaitingCustomer  number of waiting custormer
+     * @param nextAvailableTime next available time
      */
     public Server(int identifier, boolean isAvailable,
         boolean numOfWaitingCustomer, double nextAvailableTime) {
@@ -34,13 +34,13 @@ public class Server {
     }
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
      * @param identifier    ID
-     * @param isAvailable   是否空闲
-     * @param numOfWaitingCustomer  等待队列长度
-     * @param nextAvailableTime 下次空闲时间
-     * @param customerQueue 客户队列
+     * @param isAvailable   available or not
+     * @param numOfWaitingCustomer  number of waiting custormer
+     * @param nextAvailableTime next available time
+     * @param customerQueue custormer queue
      */
     public Server(int identifier, boolean isAvailable,
         int numOfWaitingCustomer, double nextAvailableTime, Queue<Customer> customerQueue) {
@@ -54,13 +54,13 @@ public class Server {
     }
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
      * @param identifier    ID
-     * @param isAvailable   是否空闲
-     * @param isCounter     是否是self-checkout counter
-     * @param numOfWaitingCustomer  等待队列长度
-     * @param nextAvailableTime 下次空闲时间
+     * @param isAvailable   available or not
+     * @param isCounter     is self-checkout counter or not
+     * @param numOfWaitingCustomer  number of waiting custormer
+     * @param nextAvailableTime next available time
      */
     public Server(int identifier, boolean isAvailable,
         boolean isCounter, int numOfWaitingCustomer, double nextAvailableTime) {
@@ -74,14 +74,14 @@ public class Server {
     }
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
      * @param identifier    ID
-     * @param isAvailable   是否空闲
-     * @param isResting     是否在rest
-     * @param numOfWaitingCustomer  等待队列长度
-     * @param nextAvailableTime 下次空闲时间
-     * @param customerQueue 客户队列
+     * @param isAvailable   available or not
+     * @param isResting     resting or not
+     * @param numOfWaitingCustomer  number of waiting custormer
+     * @param nextAvailableTime next available time
+     * @param customerQueue custormer queue
      */
     public Server(int identifier, boolean isAvailable, boolean isResting,
         int numOfWaitingCustomer, double nextAvailableTime, Queue<Customer> customerQueue) {
@@ -96,7 +96,7 @@ public class Server {
 
     
     /** 
-     * 获取server的ID.
+     * get server identifier.
      * 
      * @return int
      */
@@ -106,7 +106,7 @@ public class Server {
 
     
     /** 
-     * 是否空闲.
+     * get available or not.
      * 
      * @return boolean
      */
@@ -116,7 +116,7 @@ public class Server {
 
     
     /** 
-     * 是否在rest.
+     * get resting or not.
      * 
      * @return boolean
      */
@@ -126,7 +126,7 @@ public class Server {
 
     
     /** 
-     * 是否为self-check counter.
+     * get is self-check counter or not.
      * 
      * @return boolean
      */
@@ -136,7 +136,7 @@ public class Server {
 
     
     /** 
-     * 等待队列长度.
+     * get waiting customer number.
      * 
      * @return int
      */
@@ -146,7 +146,7 @@ public class Server {
 
     
     /** 
-     * 下一次空闲的时间.
+     * get next available time.
      * 
      * @return double
      */
@@ -156,7 +156,7 @@ public class Server {
 
     
     /** 
-     * 获取等待队列.
+     * get waiting queue.
      * 
      * @return Queue
      */
@@ -166,7 +166,7 @@ public class Server {
 
     
     /** 
-     * 获取等待队列的队首客户.
+     * get first customer in waiting queue.
      * 
      * @return Customer
      */
@@ -176,7 +176,7 @@ public class Server {
 
     
     /** 
-     * 获取等待队列的队首客户并弹出.
+     * get first customer in waiting queue and pop out.
      * 
      * @return Server
      */
@@ -189,9 +189,9 @@ public class Server {
     
     
     /** 
-     * 将客户加入等待队列队尾.
+     * put a new customer in waiting queue.
      * 
-     * @param customer  客户
+     * @param customer  customer
      * @return Server
      */
     public Server addCustomer(Customer customer) {
@@ -203,7 +203,7 @@ public class Server {
 
     
     /** 
-     * 共享等待队列长度.
+     * sharing customer queue number.
      * 
      * @return int
      */
@@ -213,7 +213,7 @@ public class Server {
 
     
     /** 
-     * 获取共享等待队列的队首客户.
+     * get first customer in sharing queue.
      * 
      * @return Customer
      */
@@ -223,7 +223,7 @@ public class Server {
 
     
     /** 
-     * 获取共享等待队列的队首客户并弹出.
+     * get first customer in sharing queue and pop out.
      * 
      * @return Customer
      */
@@ -235,9 +235,9 @@ public class Server {
 
     
     /** 
-     * 将客户加入共享等待队列的队尾.
+     * put a new customer in sharing queue.
      * 
-     * @param customer  客户
+     * @param customer  customer
      */
     public void addSharingCustomer(Customer customer) {
         Server.numOfSharingCustomer++;
@@ -247,7 +247,7 @@ public class Server {
 
     
     /** 
-     * String转换.
+     * String transform.
      * 
      * @return String
      */

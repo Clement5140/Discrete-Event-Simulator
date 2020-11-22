@@ -4,11 +4,11 @@ public class ServeEvent extends Event {
     private final int serverID;
     
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
-     * @param customer  客户
-     * @param eventStartTime    开始时间
-     * @param serverID  server的ID
+     * @param customer  customer
+     * @param eventStartTime    event start time
+     * @param serverID  server identifier
      */
     public ServeEvent(Customer customer,  double eventStartTime, int serverID) {
         super(customer, eventStartTime, 3, x -> ServeExecute.serveFunc(customer, serverID, x));
@@ -17,7 +17,7 @@ public class ServeEvent extends Event {
 
     
     /** 
-     * String转换.
+     * String transform.
      * 
      * @return String
      */

@@ -4,17 +4,17 @@ public class RandomGen {
     private static RandomGenerator randomGenerator;
 
     /** 
-     * 空构造函数.
+     * empty constructed funcion.
      */
     public RandomGen() {}
 
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
-     * @param seed  随机种子
-     * @param lambda    lambda参数
-     * @param mu    mu参数
-     * @param rho   rho参数
+     * @param seed  random seed
+     * @param lambda    lambda parameter
+     * @param mu    mu parameter
+     * @param rho   rho parameter
      */
     public RandomGen(int seed, double lambda, double mu, double rho) {
         randomGenerator = new RandomGenerator(seed, lambda, mu, rho);
@@ -22,7 +22,7 @@ public class RandomGen {
 
     
     /** 
-     * 随机客户到达时间.
+     * random arrive time.
      * 
      * @return double
      */
@@ -35,7 +35,7 @@ public class RandomGen {
 
     
     /** 
-     * 随机服务持续时间.
+     * random service time.
      * 
      * @return double
      */
@@ -48,7 +48,7 @@ public class RandomGen {
 
     
     /** 
-     * 随机server是否休息.
+     * rest or not.
      * 
      * @return double
      */
@@ -61,7 +61,7 @@ public class RandomGen {
 
     
     /** 
-     * 随机休息时间.
+     * random rest time.
      * 
      * @return double
      */
@@ -74,7 +74,7 @@ public class RandomGen {
 
     
     /** 
-     * 随机客户类型，是否贪心.
+     * random customer type.
      * 
      * @return double
      */

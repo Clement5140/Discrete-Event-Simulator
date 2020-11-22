@@ -3,10 +3,10 @@ package cs2030.simulator;
 public class LeaveEvent extends Event {
     
     /** 
-     * 构造函数.
+     * constructed funcion.
      * 
-     * @param customer  客户
-     * @param eventStartTime    开始时间
+     * @param customer  customer
+     * @param eventStartTime    event start time
      */
     public LeaveEvent(Customer customer, double eventStartTime) {
         super(customer, eventStartTime, 1, x -> LeaveExecute.leaveFunc(customer, x));
@@ -14,7 +14,7 @@ public class LeaveEvent extends Event {
 
     
     /** 
-     * String转换.
+     * String transform.
      * 
      * @return String
      */
