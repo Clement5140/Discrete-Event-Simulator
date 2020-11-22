@@ -10,22 +10,27 @@ public class RandomGen {
     }
 
     public double genInterArrivalTime() {
+        if (randomGenerator == null) return 1;
         return randomGenerator.genInterArrivalTime();
     }
 
     public double genServiceTime() {
+        if (randomGenerator == null) return 1;
         return randomGenerator.genServiceTime();
     }
 
     public double genRandomRest() {
+        if (randomGenerator == null) return 1;
         return randomGenerator.genRandomRest();
     }
 
     public double genRestPeriod() {
+        if (randomGenerator == null) return 1;
         return randomGenerator.genRestPeriod();
     }
 
     public double genCustomerType() {
+        if (randomGenerator == null) return 1;
         return randomGenerator.genCustomerType();
     }
 

@@ -9,7 +9,7 @@ public class ServeExecute {
         if(opServer.isPresent()) {
             Statistics.addServedCustomers();
             Server server = opServer.get();
-            Server newserver = new Server(server.getID(), false, false, server.getNextAvailableTime());
+            Server newserver = new Server(server.getID(), false, server.getnumOfWaitingCustomer()-1, server.getNextAvailableTime(), server.getCustomerQueue()).pollFirstCustomer();
             Shop newShop = shop.replace(newserver);
             Event newEvent = new DoneEvent(customer, server.getNextAvailableTime(), newserver.getID());
             return new Pair<Shop, Event>(newShop, newEvent);

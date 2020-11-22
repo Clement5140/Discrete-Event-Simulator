@@ -1,26 +1,63 @@
 import java.util.PriorityQueue;
-import java.util.List;
 import java.util.Comparator;
+import java.util.List;
+
 import cs2030.simulator.Pair;
+import cs2030.simulator.Utils;
 import cs2030.simulator.RandomGen;
 import cs2030.simulator.Statistics;
 import cs2030.simulator.Customer;
-import cs2030.simulator.Server;
 import cs2030.simulator.Shop;
 import cs2030.simulator.Event;
 import cs2030.simulator.ArriveEvent;
+import cs2030.simulator.ServeEvent;
+import cs2030.simulator.ServeEvent2;
+import cs2030.simulator.Server;
 
 public class Main {
     public static void main(String[] args) {
         // test();
-        int randomGeneratorSeed = Integer.valueOf(args[0]).intValue();
-        int numOfServers = Integer.valueOf(args[1]).intValue();
-        int numOfCustomers = Integer.valueOf(args[2]).intValue();
-        double lambda = Double.valueOf(args[3]).doubleValue();
-        double mu = Double.valueOf(args[4]).doubleValue();
+        int randomGeneratorSeed = 0;
+        int numOfServers = 1;
+        int maxQueueLength = 1;
+        int numOfCustomers = 0;
+        double lambda = 0.0;
+        double mu = 0.0;
+        double rho = 0.0;
+        double restProbability = 0.0;
+        
+        if (args.length == 5) {
+            randomGeneratorSeed = Integer.valueOf(args[0]).intValue();
+            numOfServers = Integer.valueOf(args[1]).intValue();
+            maxQueueLength = 1;
+            numOfCustomers = Integer.valueOf(args[2]).intValue();
+            lambda = Double.valueOf(args[3]).doubleValue();
+            mu = Double.valueOf(args[4]).doubleValue();
+        }
+        if (args.length == 6) {
+            randomGeneratorSeed = Integer.valueOf(args[0]).intValue();
+            numOfServers = Integer.valueOf(args[1]).intValue();
+            maxQueueLength = Integer.valueOf(args[2]).intValue();
+            numOfCustomers = Integer.valueOf(args[3]).intValue();
+            lambda = Double.valueOf(args[4]).doubleValue();
+            mu = Double.valueOf(args[5]).doubleValue();
+        }
+        if (args.length == 8) {
+            randomGeneratorSeed = Integer.valueOf(args[0]).intValue();
+            numOfServers = Integer.valueOf(args[1]).intValue();
+            maxQueueLength = Integer.valueOf(args[2]).intValue();
+            numOfCustomers = Integer.valueOf(args[3]).intValue();
+            lambda = Double.valueOf(args[4]).doubleValue();
+            mu = Double.valueOf(args[5]).doubleValue();
+            rho = Double.valueOf(args[6]).doubleValue();
+            restProbability = Double.valueOf(args[7]).doubleValue();
+        }
 
         Statistics.setNumOfCustomers(numOfCustomers);
-        RandomGen random = new RandomGen(randomGeneratorSeed, lambda, mu, 0);
+        Utils utils = new Utils();
+        utils.setMaxQueueLength(maxQueueLength);
+        utils.setRestProbability(restProbability);
+        RandomGen random = new RandomGen(randomGeneratorSeed, lambda, mu, rho);
 
         PriorityQueue<Event> pq = new PriorityQueue<Event>(new Comparator<Event>() {
             public int compare(Event o1, Event o2) {
@@ -40,10 +77,17 @@ public class Main {
 
         while (!pq.isEmpty()) {
             Event e = pq.poll();
-            System.out.println(e);
+            if (e.isVisible())
+                System.out.println(e);
             Pair<Shop, Event> pair = e.execute(shop);
             if (pair.second() != null)
-                pq.add(pair.second());
+            {
+                Event event = pair.second();
+                if(event instanceof ServeEvent2)
+                    event = new ServeEvent(event.getCustomer(), event.getEventStartTime(), 
+                            Integer.valueOf(((ServeEvent2) event).toString()).intValue());
+                pq.add(event);
+            }
             shop = pair.first();
             // System.out.println(shop);
         }

@@ -7,12 +7,22 @@ public abstract class Event{
     private final double eventStartTime;
     private final Function<Shop, Pair<Shop, Event>> func;
     private final Integer priority;
+    private final boolean visible;
 
-    public Event(Customer customer, double eventStartTime, Integer priority, Function<Shop, Pair<Shop, Event>> func){
+    public Event(Customer customer, double eventStartTime, Integer priority, Function<Shop, Pair<Shop, Event>> func) {
         this.customer = customer;
         this.eventStartTime = eventStartTime;
         this.func = func;
         this.priority = priority;
+        this.visible = true;
+    }
+
+    public Event(Customer customer, double eventStartTime, Integer priority, Function<Shop, Pair<Shop, Event>> func, boolean visible) {
+        this.customer = customer;
+        this.eventStartTime = eventStartTime;
+        this.func = func;
+        this.priority = priority;
+        this.visible = visible;
     }
 
     public Customer getCustomer() {
@@ -21,6 +31,10 @@ public abstract class Event{
     
     public double getEventStartTime() {
         return eventStartTime;
+    }
+
+    public boolean isVisible() {
+        return visible;
     }
 
     public int compareTo(Event o) {
