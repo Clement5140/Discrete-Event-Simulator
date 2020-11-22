@@ -9,7 +9,7 @@ public class LeaveEvent extends Event {
 
     @Override
     public String toString(){
-        return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + " leaves" ;
+        return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + (this.getCustomer().isGreedy()?"(greedy)":"") + " leaves" ;
     }
 
 }

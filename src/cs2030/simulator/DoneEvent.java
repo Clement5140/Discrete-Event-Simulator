@@ -13,7 +13,7 @@ public class DoneEvent extends Event {
     public String toString(){
         Utils utils = new Utils();
         if (this.serverID <= utils.getNumOfServers())
-            return String.format("%.3f ",this.getEventStartTime()) + this.getCustomer().getID() + " done serving by server " +this.serverID;
-        return String.format("%.3f ",this.getEventStartTime()) + this.getCustomer().getID() + " done serving by self-check " +this.serverID;
+            return String.format("%.3f ",this.getEventStartTime()) + this.getCustomer().getID() + (this.getCustomer().isGreedy()?"(greedy)":"") + " done serving by server " +this.serverID;
+        return String.format("%.3f ",this.getEventStartTime()) + this.getCustomer().getID() + (this.getCustomer().isGreedy()?"(greedy)":"") + " done serving by self-check " +this.serverID;
     }
 }

@@ -26,6 +26,7 @@ public class Main {
         double mu = 0.0;
         double rho = 0.0;
         double restProbability = 0.0;
+        double greedyProbability = 0.0;
 
         if (args.length == 5) {
             randomGeneratorSeed = Integer.valueOf(args[0]).intValue();
@@ -64,6 +65,18 @@ public class Main {
             rho = Double.valueOf(args[7]).doubleValue();
             restProbability = Double.valueOf(args[8]).doubleValue();
         }
+        if (args.length == 10) {
+            randomGeneratorSeed = Integer.valueOf(args[0]).intValue();
+            numOfServers = Integer.valueOf(args[1]).intValue();
+            numOfSelfCheckoutCounters = Integer.valueOf(args[2]).intValue();
+            maxQueueLength = Integer.valueOf(args[3]).intValue();
+            numOfCustomers = Integer.valueOf(args[4]).intValue();
+            lambda = Double.valueOf(args[5]).doubleValue();
+            mu = Double.valueOf(args[6]).doubleValue();
+            rho = Double.valueOf(args[7]).doubleValue();
+            restProbability = Double.valueOf(args[8]).doubleValue();
+            greedyProbability = Double.valueOf(args[9]).doubleValue();
+        }
 
         Statistics.setNumOfCustomers(numOfCustomers);
         Utils utils = new Utils();
@@ -71,7 +84,7 @@ public class Main {
         utils.setNumOfSelfCheckoutCounters(numOfSelfCheckoutCounters);
         utils.setMaxQueueLength(maxQueueLength);
         utils.setRestProbability(restProbability);
-        RandomGen random = new RandomGen(randomGeneratorSeed, lambda, mu, rho);
+        RandomGen randomGen = new RandomGen(randomGeneratorSeed, lambda, mu, rho);
 
         PriorityQueue<Event> pq = new PriorityQueue<Event>(new Comparator<Event>() {
             public int compare(Event o1, Event o2) {
@@ -84,9 +97,10 @@ public class Main {
         int indexOfCustomers = 1;
         double arrivalTime = 0.0;
         for (int i = 0; i < numOfCustomers; ++i) {
-            Customer customer = new Customer(indexOfCustomers++, arrivalTime);
+            Customer customer = (randomGen.genCustomerType() < greedyProbability) ? new Customer(indexOfCustomers++, arrivalTime, true)
+                                : new Customer(indexOfCustomers++, arrivalTime);
             pq.add((Event)(new ArriveEvent(customer)));
-            arrivalTime += random.genInterArrivalTime();
+            arrivalTime += randomGen.genInterArrivalTime();
         }
 
         while (!pq.isEmpty()) {

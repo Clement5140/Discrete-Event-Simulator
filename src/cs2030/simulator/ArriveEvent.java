@@ -9,7 +9,7 @@ public class ArriveEvent extends Event {
 
     @Override
     public String toString() {
-        return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + " arrives";
+        return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + (this.getCustomer().isGreedy()?"(greedy)":"") + " arrives";
     }
 
 }

@@ -5,6 +5,7 @@ public class Utils {
     private static int numOfSelfCheckoutCounters = 0;
     private static int maxQueueLength = 1;
     private static double restProbability = 0.0;
+    private static double greedyProbability = 0.0;
 
     public Utils() {}
 
@@ -38,6 +39,14 @@ public class Utils {
 
     public double getRestProbability() {
         return restProbability;
+    }
+
+    public void setGreedyProbability(double greedyProbability) {
+        Utils.greedyProbability = greedyProbability;
+    }
+
+    public double getGreedyProbability() {
+        return greedyProbability;
     }
 
     public int max(int a, int b) {

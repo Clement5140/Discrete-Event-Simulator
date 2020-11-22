@@ -18,7 +18,7 @@ public class WaitEvent extends Event {
     public String toString(){
         Utils utils = new Utils();
         if (this.serverID <= utils.getNumOfServers())
-            return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + " waits to be served by server " + this.serverID;
-        return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + " waits to be served by self-check " + this.serverID;
+            return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + (this.getCustomer().isGreedy()?"(greedy)":"") + " waits to be served by server " + this.serverID;
+        return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + (this.getCustomer().isGreedy()?"(greedy)":"") + " waits to be served by self-check " + this.serverID;
     }
 }

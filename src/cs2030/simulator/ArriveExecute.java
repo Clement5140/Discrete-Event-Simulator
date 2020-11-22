@@ -1,5 +1,6 @@
 package cs2030.simulator;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,23 +24,52 @@ public class ArriveExecute {
             return new Pair<Shop, Event>(newShop, newEvent);
         }
 
-        opServer = shop.find(x -> !x.isCounter() && x.getnumOfWaitingCustomer()<utils.getMaxQueueLength());
-        if (opServer.isPresent()) {
-            Server server = opServer.get();
-            Server newServer = new Server(server.getID(), false, server.getnumOfWaitingCustomer(), server.getNextAvailableTime(), server.getCustomerQueue()).addCustomer(customer);
-            Shop newShop = shop.replace(newServer);
-            Event newEvent = new WaitEvent(customer, customer.getArrivalTime(), newServer.getID());
-            return new Pair<Shop, Event>(newShop, newEvent);
-        }
-        if (utils.getNumOfSelfCheckoutCounters() != 0) {
+        if (customer.isGreedy()) {
             List<Server> serverList = shop.getServerList();
-            Server counter = serverList.get(utils.getNumOfServers());
-            if (counter.getNumOfSharingCustomer() < utils.getMaxQueueLength()) {
-                counter.addSharingCustomer(customer);
-                Event newEvent = new WaitEvent(customer, customer.getArrivalTime(), counter.getID());
-                return new Pair<Shop, Event>(shop, newEvent);
+            Server server = serverList.stream().filter(x -> !x.isCounter()).min(Comparator.comparing(Server::getnumOfWaitingCustomer)).get();
+            if (utils.getNumOfSelfCheckoutCounters() != 0) {
+                Server counter = serverList.get(utils.getNumOfServers());
+                if (server.getnumOfWaitingCustomer()<utils.getMaxQueueLength() || counter.getNumOfSharingCustomer()<utils.getMaxQueueLength()) {
+                    if (server.getnumOfWaitingCustomer() <= counter.getNumOfSharingCustomer()) {
+                        Server newServer = new Server(server.getID(), false, server.getnumOfWaitingCustomer(), server.getNextAvailableTime(), server.getCustomerQueue()).addCustomer(customer);
+                        Shop newShop = shop.replace(newServer);
+                        Event newEvent = new WaitEvent(customer, customer.getArrivalTime(), newServer.getID());
+                        return new Pair<Shop, Event>(newShop, newEvent);
+                    }
+                    else {
+                        counter.addSharingCustomer(customer);
+                        Event newEvent = new WaitEvent(customer, customer.getArrivalTime(), counter.getID());
+                        return new Pair<Shop, Event>(shop, newEvent);
+                    }
+                }
+            }
+            else if (server.getnumOfWaitingCustomer() < utils.getMaxQueueLength()) {
+                    Server newServer = new Server(server.getID(), false, server.getnumOfWaitingCustomer(), server.getNextAvailableTime(), server.getCustomerQueue()).addCustomer(customer);
+                    Shop newShop = shop.replace(newServer);
+                    Event newEvent = new WaitEvent(customer, customer.getArrivalTime(), newServer.getID());
+                    return new Pair<Shop, Event>(newShop, newEvent);
+                }
+        }
+        else {
+            opServer = shop.find(x -> !x.isCounter() && x.getnumOfWaitingCustomer()<utils.getMaxQueueLength());
+            if (opServer.isPresent()) {
+                Server server = opServer.get();
+                Server newServer = new Server(server.getID(), false, server.getnumOfWaitingCustomer(), server.getNextAvailableTime(), server.getCustomerQueue()).addCustomer(customer);
+                Shop newShop = shop.replace(newServer);
+                Event newEvent = new WaitEvent(customer, customer.getArrivalTime(), newServer.getID());
+                return new Pair<Shop, Event>(newShop, newEvent);
+            }
+            if (utils.getNumOfSelfCheckoutCounters() != 0) {
+                List<Server> serverList = shop.getServerList();
+                Server counter = serverList.get(utils.getNumOfServers());
+                if (counter.getNumOfSharingCustomer() < utils.getMaxQueueLength()) {
+                    counter.addSharingCustomer(customer);
+                    Event newEvent = new WaitEvent(customer, customer.getArrivalTime(), counter.getID());
+                    return new Pair<Shop, Event>(shop, newEvent);
+                }
             }
         }
+
         Shop newShop = new Shop(shop.getServerList());
         Event newEvent = new LeaveEvent(customer, customer.getArrivalTime());
         return new Pair<Shop, Event>(newShop, newEvent);
