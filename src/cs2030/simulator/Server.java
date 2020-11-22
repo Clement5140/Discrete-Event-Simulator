@@ -6,6 +6,7 @@ import java.util.Queue;
 public class Server {
     private final int identifier;
     private final boolean isAvailable;
+    private final boolean isResting;
     private final int numOfWaitingCustomer;
     private final double nextAvailableTime;
     private final Queue<Customer> customerQueue;
@@ -13,6 +14,7 @@ public class Server {
     public Server(int identifier, boolean isAvailable, boolean numOfWaitingCustomer, double nextAvailableTime) {
         this.identifier = identifier;
         this.isAvailable = isAvailable;
+        this.isResting = false;
         this.numOfWaitingCustomer = numOfWaitingCustomer ? 1 : 0;
         this.nextAvailableTime = nextAvailableTime;
         this.customerQueue = new LinkedList<Customer>();
@@ -21,6 +23,16 @@ public class Server {
     public Server(int identifier, boolean isAvailable, int numOfWaitingCustomer, double nextAvailableTime, Queue<Customer> customerQueue) {
         this.identifier = identifier;
         this.isAvailable = isAvailable;
+        this.isResting = false;
+        this.numOfWaitingCustomer = numOfWaitingCustomer;
+        this.nextAvailableTime = nextAvailableTime;
+        this.customerQueue = customerQueue;
+    }
+
+    public Server(int identifier, boolean isAvailable, boolean isResting, int numOfWaitingCustomer, double nextAvailableTime, Queue<Customer> customerQueue) {
+        this.identifier = identifier;
+        this.isAvailable = isAvailable;
+        this.isResting = isResting;
         this.numOfWaitingCustomer = numOfWaitingCustomer;
         this.nextAvailableTime = nextAvailableTime;
         this.customerQueue = customerQueue;
@@ -31,6 +43,9 @@ public class Server {
     }
     public boolean isAvailable(){
         return this.isAvailable;
+    }
+    public boolean isResting(){
+        return this.isResting;
     }
     public int getnumOfWaitingCustomer(){
         return this.numOfWaitingCustomer;

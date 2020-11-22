@@ -25,7 +25,7 @@ public class Main {
         double mu = 0.0;
         double rho = 0.0;
         double restProbability = 0.0;
-        
+
         if (args.length == 5) {
             randomGeneratorSeed = Integer.valueOf(args[0]).intValue();
             numOfServers = Integer.valueOf(args[1]).intValue();
@@ -55,6 +55,7 @@ public class Main {
 
         Statistics.setNumOfCustomers(numOfCustomers);
         Utils utils = new Utils();
+        utils.setNumOfServers(numOfServers);
         utils.setMaxQueueLength(maxQueueLength);
         utils.setRestProbability(restProbability);
         RandomGen random = new RandomGen(randomGeneratorSeed, lambda, mu, rho);

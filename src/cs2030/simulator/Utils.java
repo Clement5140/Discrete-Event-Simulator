@@ -1,10 +1,19 @@
 package cs2030.simulator;
 
 public class Utils {
+    private static int numOfServers = 1;
     private static int maxQueueLength = 1;
     private static double restProbability = 0.0;
 
     public Utils() {}
+
+    public void setNumOfServers(int numOfServers) {
+        Utils.numOfServers = numOfServers;
+    }
+
+    public int getNumOfServers() {
+        return numOfServers;
+    }
 
     public void setMaxQueueLength(int maxQueueLength) {
         Utils.maxQueueLength = maxQueueLength;

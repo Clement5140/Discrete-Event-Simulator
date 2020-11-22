@@ -6,7 +6,7 @@ public class ArriveExecute {
     
     public static Pair<Shop, Event> arriveFunc(Customer customer, Shop shop) {
         Utils utils = new Utils();
-        Optional<Server> opServer = shop.find(x -> x.isAvailable());
+        Optional<Server> opServer = shop.find(x -> x.isAvailable() && !x.isResting());
         if(opServer.isPresent()) {
             Server server = opServer.get();
             RandomGen random = new RandomGen();
