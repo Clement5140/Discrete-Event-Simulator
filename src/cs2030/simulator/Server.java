@@ -7,14 +7,18 @@ public class Server {
     private final int identifier;
     private final boolean isAvailable;
     private final boolean isResting;
+    private final boolean isCounter;
     private final int numOfWaitingCustomer;
     private final double nextAvailableTime;
     private final Queue<Customer> customerQueue;
+    private static int numOfSharingCustomer = 0;
+    private static Queue<Customer> sharingCustomerQueue = new LinkedList<Customer>();
 
     public Server(int identifier, boolean isAvailable, boolean numOfWaitingCustomer, double nextAvailableTime) {
         this.identifier = identifier;
         this.isAvailable = isAvailable;
         this.isResting = false;
+        this.isCounter = false;
         this.numOfWaitingCustomer = numOfWaitingCustomer ? 1 : 0;
         this.nextAvailableTime = nextAvailableTime;
         this.customerQueue = new LinkedList<Customer>();
@@ -24,15 +28,27 @@ public class Server {
         this.identifier = identifier;
         this.isAvailable = isAvailable;
         this.isResting = false;
+        this.isCounter = false;
         this.numOfWaitingCustomer = numOfWaitingCustomer;
         this.nextAvailableTime = nextAvailableTime;
         this.customerQueue = customerQueue;
+    }
+
+    public Server(int identifier, boolean isAvailable, boolean isCounter, int numOfWaitingCustomer, double nextAvailableTime) {
+        this.identifier = identifier;
+        this.isAvailable = isAvailable;
+        this.isResting = false;
+        this.isCounter = isCounter;
+        this.numOfWaitingCustomer = numOfWaitingCustomer;
+        this.nextAvailableTime = nextAvailableTime;
+        this.customerQueue = new LinkedList<Customer>();
     }
 
     public Server(int identifier, boolean isAvailable, boolean isResting, int numOfWaitingCustomer, double nextAvailableTime, Queue<Customer> customerQueue) {
         this.identifier = identifier;
         this.isAvailable = isAvailable;
         this.isResting = isResting;
+        this.isCounter = false;
         this.numOfWaitingCustomer = numOfWaitingCustomer;
         this.nextAvailableTime = nextAvailableTime;
         this.customerQueue = customerQueue;
@@ -46,6 +62,9 @@ public class Server {
     }
     public boolean isResting(){
         return this.isResting;
+    }
+    public boolean isCounter(){
+        return this.isCounter;
     }
     public int getnumOfWaitingCustomer(){
         return this.numOfWaitingCustomer;
@@ -69,6 +88,26 @@ public class Server {
         Queue<Customer> newCustomerQueue = new LinkedList<Customer>(customerQueue);
         newCustomerQueue.add(customer);
         return new Server(identifier, isAvailable, numOfWaitingCustomer, nextAvailableTime, newCustomerQueue);
+    }
+
+    public int getNumOfSharingCustomer() {
+        return Server.numOfSharingCustomer;
+    }
+
+    public Customer getFirstSharingCustomer() {
+        return Server.sharingCustomerQueue.peek();
+    }
+
+    public Customer pollFirstSharingCustomer() {
+        Server.numOfSharingCustomer--;
+        // System.out.println("poll " + Server.numOfSharingCustomer);
+        return Server.sharingCustomerQueue.poll();
+    }
+
+    public void addSharingCustomer(Customer customer) {
+        Server.numOfSharingCustomer++;
+        // System.out.println("add " + Server.numOfSharingCustomer);
+        Server.sharingCustomerQueue.add(customer);
     }
 
     @Override

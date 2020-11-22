@@ -18,15 +18,26 @@ public class DoneExecute {
                                     new ServerRestEvent(server.getFirstCustomer(), server.getNextAvailableTime(), server.getID());
                     return new Pair<Shop, Event>(newShop, newEvent);
                 }
+                Server newserver = new Server(server.getID(), true, server.getnumOfWaitingCustomer(), server.getNextAvailableTime(), server.getCustomerQueue());
+                Shop newShop = shop.replace(newserver);
+                if (server.getnumOfWaitingCustomer() == 0)
+                    return new Pair<Shop, Event>(newShop, null);
+                newserver = new Server(server.getID(), true, server.getnumOfWaitingCustomer(), server.getNextAvailableTime()+randomGen.genServiceTime(), server.getCustomerQueue());
+                Event newEvent = new ServeEvent2(server.getFirstCustomer(), server.getNextAvailableTime(), server.getID());
+                newShop = shop.replace(newserver);
+                Statistics.addWaitingTime(server.getNextAvailableTime() - server.getFirstCustomer().getArrivalTime());
+                return new Pair<Shop, Event>(newShop, newEvent);
             }
-            Server newserver = new Server(server.getID(), true, server.getnumOfWaitingCustomer(), server.getNextAvailableTime(), server.getCustomerQueue());
-            Shop newShop = shop.replace(newserver);
-            if (server.getnumOfWaitingCustomer() == 0)
+            Server newServer = new Server(server.getID(), true, true, 0, server.getNextAvailableTime());
+            Shop newShop = shop.replace(newServer);
+            // System.out.println(newServer.getID() + " " + newServer.getNumOfSharingCustomer());
+            if (newServer.getNumOfSharingCustomer() == 0)
                 return new Pair<Shop, Event>(newShop, null);
-            newserver = new Server(server.getID(), true, server.getnumOfWaitingCustomer(), server.getNextAvailableTime()+randomGen.genServiceTime(), server.getCustomerQueue());
-            Event newEvent = new ServeEvent2(server.getFirstCustomer(), server.getNextAvailableTime(), server.getID());
-            newShop = shop.replace(newserver);
-            Statistics.addWaitingTime(server.getNextAvailableTime() - server.getFirstCustomer().getArrivalTime());
+            newServer = new Server(server.getID(), true, true, 0, server.getNextAvailableTime()+randomGen.genServiceTime());
+            newShop = shop.replace(newServer);
+            customer = newServer.pollFirstSharingCustomer();
+            Event newEvent = new ServeEvent2(customer, server.getNextAvailableTime(), newServer.getID());
+            Statistics.addWaitingTime(server.getNextAvailableTime() - customer.getArrivalTime());
             return new Pair<Shop, Event>(newShop, newEvent);
         }
         Shop newShop = new Shop(shop.getServerList());

@@ -16,6 +16,9 @@ public class WaitEvent extends Event {
 
     @Override
     public String toString(){
-        return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + " waits to be served by server " + this.serverID;
+        Utils utils = new Utils();
+        if (this.serverID <= utils.getNumOfServers())
+            return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + " waits to be served by server " + this.serverID;
+        return String.format("%.3f ", this.getEventStartTime()) + this.getCustomer().getID() + " waits to be served by self-check " + this.serverID;
     }
 }

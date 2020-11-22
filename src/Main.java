@@ -19,6 +19,7 @@ public class Main {
         // test();
         int randomGeneratorSeed = 0;
         int numOfServers = 1;
+        int numOfSelfCheckoutCounters = 0;
         int maxQueueLength = 1;
         int numOfCustomers = 0;
         double lambda = 0.0;
@@ -52,10 +53,22 @@ public class Main {
             rho = Double.valueOf(args[6]).doubleValue();
             restProbability = Double.valueOf(args[7]).doubleValue();
         }
+        if (args.length == 9) {
+            randomGeneratorSeed = Integer.valueOf(args[0]).intValue();
+            numOfServers = Integer.valueOf(args[1]).intValue();
+            numOfSelfCheckoutCounters = Integer.valueOf(args[2]).intValue();
+            maxQueueLength = Integer.valueOf(args[3]).intValue();
+            numOfCustomers = Integer.valueOf(args[4]).intValue();
+            lambda = Double.valueOf(args[5]).doubleValue();
+            mu = Double.valueOf(args[6]).doubleValue();
+            rho = Double.valueOf(args[7]).doubleValue();
+            restProbability = Double.valueOf(args[8]).doubleValue();
+        }
 
         Statistics.setNumOfCustomers(numOfCustomers);
         Utils utils = new Utils();
         utils.setNumOfServers(numOfServers);
+        utils.setNumOfSelfCheckoutCounters(numOfSelfCheckoutCounters);
         utils.setMaxQueueLength(maxQueueLength);
         utils.setRestProbability(restProbability);
         RandomGen random = new RandomGen(randomGeneratorSeed, lambda, mu, rho);
@@ -66,7 +79,7 @@ public class Main {
             }
         });
 
-        Shop shop = new Shop(numOfServers);
+        Shop shop = new Shop(numOfServers, numOfSelfCheckoutCounters);
 
         int indexOfCustomers = 1;
         double arrivalTime = 0.0;

@@ -25,6 +25,18 @@ public class Shop {
         this.serverList = new ArrayList<Server>(serverList);
     }
 
+    public Shop(int numOfServers, int numOfSelfCheckoutCounters) {
+        int[] nums = IntStream.range(0, numOfServers).toArray();
+        List<Integer> numList = Arrays.stream(nums).boxed().collect(Collectors.toList());
+        List<Server> serverList = numList.stream().map(i -> new Server(i + 1, true, false, 0)).collect(Collectors.toList());
+        nums = IntStream.range(numOfServers, numOfServers+numOfSelfCheckoutCounters).toArray();
+        numList = Arrays.stream(nums).boxed().collect(Collectors.toList());
+        List<Server> counterList = numList.stream().map(i -> new Server(i + 1, true, true, 0, 0)).collect(Collectors.toList());
+        // System.out.println(serverList.size() + " " + counterList.size());
+        serverList.addAll(counterList);
+        this.serverList = new ArrayList<Server>(serverList);
+    }
+
     public List<Server> getServerList() {
         return serverList;
     }

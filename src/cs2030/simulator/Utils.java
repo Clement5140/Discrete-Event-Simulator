@@ -2,6 +2,7 @@ package cs2030.simulator;
 
 public class Utils {
     private static int numOfServers = 1;
+    private static int numOfSelfCheckoutCounters = 0;
     private static int maxQueueLength = 1;
     private static double restProbability = 0.0;
 
@@ -13,6 +14,14 @@ public class Utils {
 
     public int getNumOfServers() {
         return numOfServers;
+    }
+
+    public void setNumOfSelfCheckoutCounters(int numOfSelfCheckoutCounters) {
+        Utils.numOfSelfCheckoutCounters = numOfSelfCheckoutCounters;
+    }
+
+    public int getNumOfSelfCheckoutCounters() {
+        return numOfSelfCheckoutCounters;
     }
 
     public void setMaxQueueLength(int maxQueueLength) {

@@ -11,6 +11,9 @@ public class ServeEvent extends Event {
 
     @Override
     public String toString(){
-        return String.format("%.3f ", this.getEventStartTime())  + this.getCustomer().getID() + " served by server " + this.serverID;
+        Utils utils = new Utils();
+        if (this.serverID <= utils.getNumOfServers())
+            return String.format("%.3f ", this.getEventStartTime())  + this.getCustomer().getID() + " served by server " + this.serverID;
+        return String.format("%.3f ", this.getEventStartTime())  + this.getCustomer().getID() + " served by self-check " + this.serverID;
     }
 }
