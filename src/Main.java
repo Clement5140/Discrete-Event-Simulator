@@ -15,6 +15,12 @@ import cs2030.simulator.ServeEvent2;
 import cs2030.simulator.Server;
 
 public class Main {
+    
+    /** 
+     * 主函数.
+     * 
+     * @param args  传入的参数列表
+     */
     public static void main(String[] args) {
         // test();
         int randomGeneratorSeed = 0;
@@ -97,40 +103,50 @@ public class Main {
         int indexOfCustomers = 1;
         double arrivalTime = 0.0;
         for (int i = 0; i < numOfCustomers; ++i) {
-            Customer customer = (randomGen.genCustomerType() < greedyProbability) ? new Customer(indexOfCustomers++, arrivalTime, true)
-                                : new Customer(indexOfCustomers++, arrivalTime);
+            Customer customer = (randomGen.genCustomerType() < greedyProbability)
+                ? new Customer(indexOfCustomers++, arrivalTime, true)
+                : new Customer(indexOfCustomers++, arrivalTime);
             pq.add((Event)(new ArriveEvent(customer)));
             arrivalTime += randomGen.genInterArrivalTime();
         }
 
         while (!pq.isEmpty()) {
             Event e = pq.poll();
-            if (e.isVisible())
+            if (e.isVisible()) {
                 System.out.println(e);
+            }
             Pair<Shop, Event> pair = e.execute(shop);
-            if (pair.second() != null)
-            {
+            if (pair.second() != null) {
                 Event event = pair.second();
-                if(event instanceof ServeEvent2)
-                    event = new ServeEvent(event.getCustomer(), event.getEventStartTime(), 
-                            Integer.valueOf(((ServeEvent2) event).toString()).intValue());
+                if (event instanceof ServeEvent2) {
+                    event = new ServeEvent(event.getCustomer(), event.getEventStartTime(),
+                        Integer.valueOf(((ServeEvent2) event).toString()).intValue());
+                }
                 pq.add(event);
             }
             shop = pair.first();
             // System.out.println(shop);
         }
 
-        System.out.println("[" + String.format("%.3f", Statistics.getAverageWaitingTime()) + " " + Statistics.getServedCustomers() + " " + Statistics.getLeftCustomers() + "]");
+        System.out.println("[" + String.format("%.3f", Statistics.getAverageWaitingTime())
+            + " " + Statistics.getServedCustomers() + " " + Statistics.getLeftCustomers() + "]");
     }
 
+    /**
+     * 总测试函数.
+     */
     public static void test() {
         test_level1();
         test_level2();
     }
 
+    /**
+     * 测试函数1.
+     */
     public static void test_level1() {
         System.out.println(new Shop(2));
-        Shop shops = new Shop(List.of(new Server(1, true, false, 0), new Server(2, false, false, 1.0)));
+        Shop shops = new Shop(List.of(new Server(1, true, false, 0),
+            new Server(2, false, false, 1.0)));
         System.out.println(shops);
         System.out.println(shops.find(x -> x.isAvailable()));
         System.out.println(new Shop(2).find(x -> x.isAvailable()));
@@ -141,6 +157,9 @@ public class Main {
         System.out.println(shops);
     }
 
+    /**
+     * 测试函数2.
+     */
     public static void test_level2() {
         Pair<Integer, String> pair = Pair.of(1, "one");
         System.out.println(pair.first());
@@ -151,12 +170,18 @@ public class Main {
 
         System.out.println();
 
-        System.out.println(new ArriveEvent(new Customer(1, 1.0)).execute(new Shop(List.of(new Server(1,true,false,0)))).first());
-        System.out.println(new ArriveEvent(new Customer(1, 1.0)).execute(new Shop(List.of(new Server(1,true,false,0)))).second());
-        System.out.println(new ArriveEvent(new Customer(1, 1.0)).execute(new Shop(List.of(new Server(1,false,false,1.0)))).first());
-        System.out.println(new ArriveEvent(new Customer(1, 1.0)).execute(new Shop(List.of(new Server(1,false,false,1.0)))).second());
-        System.out.println(new ArriveEvent(new Customer(1, 1.0)).execute(new Shop(List.of(new Server(1,false,true,2.0)))).first());
-        System.out.println(new ArriveEvent(new Customer(1, 1.0)).execute(new Shop(List.of(new Server(1,false,true,2.0)))).second());
+        System.out.println(new ArriveEvent(new Customer(1, 1.0))
+            .execute(new Shop(List.of(new Server(1,true,false,0)))).first());
+        System.out.println(new ArriveEvent(new Customer(1, 1.0))
+            .execute(new Shop(List.of(new Server(1,true,false,0)))).second());
+        System.out.println(new ArriveEvent(new Customer(1, 1.0))
+            .execute(new Shop(List.of(new Server(1,false,false,1.0)))).first());
+        System.out.println(new ArriveEvent(new Customer(1, 1.0))
+            .execute(new Shop(List.of(new Server(1,false,false,1.0)))).second());
+        System.out.println(new ArriveEvent(new Customer(1, 1.0))
+            .execute(new Shop(List.of(new Server(1,false,true,2.0)))).first());
+        System.out.println(new ArriveEvent(new Customer(1, 1.0))
+            .execute(new Shop(List.of(new Server(1,false,true,2.0)))).second());
     }
 
 }

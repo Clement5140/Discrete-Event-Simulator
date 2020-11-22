@@ -3,14 +3,26 @@ package cs2030.simulator;
 import java.util.Optional;
 
 public class ServerRestExecute {
+
     
+    /** 
+     * ServeRestEvent的Execute方法.
+     * 
+     * @param customer  客户
+     * @param serverID  server的ID
+     * @param shop      商店
+     * @return Pair
+     */
     public static Pair<Shop, Event> restFunc(Customer customer, int serverID, Shop shop) {
-        Optional<Server> opServer = shop.find(x -> x.getID()==serverID);
+        Optional<Server> opServer = shop.find(x -> x.getID() == serverID);
         if (opServer.isPresent()) {
             Server server = opServer.get();
-            Server newserver = new Server(server.getID(), true, true, server.getnumOfWaitingCustomer(), server.getNextAvailableTime(), server.getCustomerQueue());
+            Server newserver = new Server(server.getID(),
+                true, true, server.getnumOfWaitingCustomer(),
+                server.getNextAvailableTime(), server.getCustomerQueue());
             Shop newShop = shop.replace(newserver);
-            Event newEvent = new ServerBackEvent(customer, server.getNextAvailableTime(), newserver.getID());
+            Event newEvent = new ServerBackEvent(customer,
+                server.getNextAvailableTime(), newserver.getID());
             return new Pair<Shop, Event>(newShop, newEvent);
         }
         Shop newShop = new Shop(shop.getServerList());
